@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grade 10 Classmates System</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #bed0e9;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .add-btn {
+        background: #1e66d0;
+    }
+
+    .show-btn {
+        background: #1e7a3f;
+    }
+
+    #list {
+        margin-top: 20px;
+        text-align: left;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Grade 10 Classmates System</h2>
+    <p>Add and view your classmates easily</p>
+
+
+    <input type="text" id="name" placeholder="Enter name">
+    <input type="text" id="section" placeholder="Enter section">
+    <input type="text" id="film" placeholder="Enter favorite film">
+
+    <br>
+
+    <button class="add-btn" onclick="addClassmate()">Add Classmate</button>
+    <button class="show-btn" onclick="showList()">Show List</button>
+
+
+    <div id="list">
+        <h3>Classmate List</h3>
+        <div id="output"></div>
+    </div>
+</div>
+
+<script>
+
+    let classmates = [
+        {name: "Yanna Moya", section: "10-Sapphire", film: "Fight Club"},
+        {name: "Ac Mactal", section: "10-Sapphire", film: "Girl, Boy, Bakla, Tomboy"},
+        {name: "Kleiser Fermocil", section: "10-Sapphire", film: "The Hows of Us"},
+        {name: "Zoe Mutia", section: "10-Sapphire", film: "Pride and Prejudice"},
+        {name: "Radhika Evangelio", section: "10-Sapphire", film: "Girl, Boy, Bakla, Tomboy"}
+    ];
+
+    function addClassmate() {
+        let name = document.getElementById("name").value;
+        let section = document.getElementById("section").value;
+        let film = document.getElementById("film").value;
+
+        if(name && section && film){
+            classmates.push({name, section, film});
+            alert("Classmate added successfully!");
+
+            
+            document.getElementById("name").value = "";
+            document.getElementById("section").value = "";
+            document.getElementById("film").value = "";
+        } else {
+            alert("Please fill out all fields.");
+        }
+    }
+
+    function showList() {
+        let output = document.getElementById("output");
+        output.innerHTML = "";
+
+        classmates.forEach(c => {
+            output.innerHTML += `
+                <p>
+                Hello! My name is ${c.name}.<br>
+                I belong to section ${c.section}.<br>
+                My favorite film is ${c.film}.
+                </p>
+                <hr>
+            `;
+        });
+
+        document.getElementById("list").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
